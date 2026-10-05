@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Анна Волкова — контент для соцсетей</title>
+<meta name="description" content="Сценарии для сторис и рилс, посты, рассылки и чат-боты для экспертов и малого бизнеса.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --mint:#0e9f84; --mint-d:#0a7f6a; --mint-l:#e7f7f3; --mint-m:#c8eee5;
+  --ink:#17302c; --muted:#4d6560; --line:#dcebe7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:17px;line-height:1.65;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.container{max-width:1080px;margin:0 auto;padding:0 20px}
+section{padding:48px 0}
+h1,h2,h3{line-height:1.15;letter-spacing:-.02em;font-weight:800}
+h2{font-size:clamp(28px,4.2vw,40px);margin-bottom:12px}
+.sub{color:var(--muted);max-width:640px;margin-bottom:26px;font-size:18px}
+.tint{background:linear-gradient(180deg,#f6fcfa,#fff)}
+
+/* Кнопки */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 26px;border-radius:14px;font:700 16px/1.2 'Inter',sans-serif;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:.2s}
+.btn-p{background:var(--mint-d);color:#fff}
+.btn-p:hover{background:#086a58;transform:translateY(-2px);box-shadow:0 10px 24px rgba(10,127,106,.28)}
+.btn-o{border-color:var(--mint-d);color:var(--mint-d);background:#fff}
+.btn-o:hover{background:var(--mint-l)}
+.btn-w{background:#fff;color:var(--mint-d)}
+.btn-w:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.18)}
+.btn-ow{border-color:rgba(255,255,255,.7);color:#fff;background:transparent}
+.btn-ow:hover{background:rgba(255,255,255,.14)}
+.btn-s{padding:10px 18px;font-size:15px;border-radius:12px}
+
+/* Шапка и меню */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hdr .container{display:flex;align-items:center;justify-content:space-between;height:66px}
+.logo{font-weight:800;font-size:18px;color:var(--ink);text-decoration:none}
+.nav{display:flex;gap:26px;align-items:center}
+.nav a.l,.dd-b{color:var(--muted);text-decoration:none;font:600 15px 'Inter',sans-serif}
+.nav a.l:hover,.dd-b:hover,.dd.open .dd-b{color:var(--mint-d)}
+.dd{position:relative}
+.dd-b{background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:6px;padding:0}
+.dd-b::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .2s}
+.dd.open .dd-b::after{transform:rotate(225deg) translateY(-2px)}
+.dd-t{display:none}
+.dd-m{display:none;position:absolute;top:calc(100% + 16px);left:-16px;min-width:280px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:8px;box-shadow:0 18px 44px rgba(23,48,44,.16)}
+.dd.open .dd-m{display:block;animation:fi .15s}
+.dd-m button{display:flex;gap:12px;align-items:center;width:100%;text-align:left;background:none;border:0;padding:11px 12px;border-radius:12px;font:600 15.5px 'Inter',sans-serif;color:var(--ink);cursor:pointer}
+.dd-m button:hover{background:var(--mint-l)}
+.dd-m button span{width:32px;height:32px;border-radius:10px;background:var(--mint-l);display:grid;place-items:center;font-size:17px;flex:none}
+.dd-m button:hover span{background:#fff}
+.burger{display:none;width:46px;height:46px;border-radius:12px;border:1.5px solid var(--line);background:#fff;font-size:22px;color:var(--ink);cursor:pointer}
+
+/* Главный экран: помещается в одну высоту окна */
+.hero{padding:clamp(16px,3vh,40px) 0 clamp(24px,4vh,48px);overflow:hidden}
+.hero .container{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.eyebrow{display:inline-block;background:var(--mint-l);color:var(--mint-d);font-weight:700;font-size:14.5px;padding:7px 14px;border-radius:99px;margin-bottom:clamp(12px,2.4vh,20px)}
+.hero h1{font-size:clamp(34px,min(5.4vw,7.6vh),58px);margin-bottom:clamp(12px,2vh,20px)}
+.hero h1 em{font-style:normal;color:var(--mint-d)}
+.hero .lead{font-size:19px;color:var(--muted);max-width:560px;margin-bottom:16px}
+.ticks{list-style:none;display:grid;gap:12px;margin:0 0 clamp(18px,3vh,30px);max-width:560px}
+.ticks li{position:relative;padding-left:36px;font-size:17px;font-weight:600;line-height:1.45}
+.ticks li::before{content:"✓";position:absolute;left:0;top:0;width:25px;height:25px;border-radius:50%;background:var(--mint-l);color:var(--mint-d);display:grid;place-items:center;font-size:14px;font-weight:800}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.hint{margin-top:16px;font-size:15px;color:var(--muted)}
+.ph{position:relative;width:fit-content;max-width:100%;margin:0 auto}
+.ph::before{content:"";position:absolute;width:88%;aspect-ratio:1;right:-9%;bottom:-6%;background:var(--mint-m);border-radius:42% 58% 55% 45%/50% 45% 55% 50%}
+.ph-img{position:relative;aspect-ratio:4/5;height:clamp(300px,calc(100vh - 150px),560px);height:clamp(300px,calc(100svh - 150px),560px);max-width:100%;border-radius:220px 220px 28px 28px;overflow:hidden;background:var(--mint-l);box-shadow:0 24px 50px rgba(10,127,106,.22)}
+.ph-img img{width:100%;height:100%;object-fit:cover;object-position:53% 28%;display:block}
+.ph-img.noimg{display:grid;place-items:center;background:linear-gradient(160deg,var(--mint-m),var(--mint-l))}
+.ph-img.noimg::after{content:attr(data-i);font-size:84px;font-weight:800;color:var(--mint-d);letter-spacing:-.03em}
+@media(min-width:901px){
+  .hero{min-height:calc(100vh - 66px);min-height:calc(100svh - 66px);display:flex;align-items:center}
+  .hero .container{width:100%}
+}
+@media(min-width:901px) and (max-height:760px){
+  .hero .hint{display:none}
+  .hero .lead{font-size:17px;margin-bottom:12px}
+  .ticks{gap:8px}.ticks li{font-size:15.5px}
+  .eyebrow{font-size:13.5px;padding:5px 12px}
+}
+
+/* Карточки */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px}
+.ic{width:50px;height:50px;border-radius:14px;background:var(--mint-l);display:grid;place-items:center;font-size:25px;margin-bottom:16px}
+.card h3{font-size:19px;margin-bottom:8px;letter-spacing:-.01em;line-height:1.25}
+.card p{color:var(--muted);font-size:16px;line-height:1.6}
+
+/* Калькулятор */
+.calc{background:var(--mint-l);border-radius:28px;padding:38px;display:grid;grid-template-columns:1fr 1fr;gap:38px;align-items:center}
+.calc h2{font-size:clamp(26px,3.6vw,34px)}
+.calc input[type=range]{width:100%;accent-color:var(--mint-d);height:30px;margin:10px 0 4px}
+.calc .big{font-size:20px;font-weight:700}
+.calc .big span{color:var(--mint-d);font-size:30px;font-weight:800}
+.res{background:#fff;border-radius:20px;padding:26px}
+.res .row{display:flex;justify-content:space-between;gap:12px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line);font-size:16.5px;color:var(--muted)}
+.res .row:last-of-type{border:0}
+.res .row b{color:var(--ink);font-size:22px;white-space:nowrap}
+.res p{margin-top:14px;font-size:15.5px;color:var(--muted)}
+
+/* Услуги */
+.group{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--mint-d);font-weight:800;margin:0 0 14px}
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:24px}
+.svc:last-child{margin-bottom:0}
+.svc-card{text-align:left;font:inherit;color:inherit;cursor:pointer;background:#fff;border:1.5px solid var(--line);border-radius:22px;padding:26px;transition:.22s;display:flex;flex-direction:column}
+.svc-card:hover{border-color:var(--mint);transform:translateY(-4px);box-shadow:0 16px 34px rgba(10,127,106,.14)}
+.svc-card .ic{margin-bottom:14px}
+.svc-card h3{font-size:19px;margin-bottom:8px;line-height:1.25;letter-spacing:-.01em}
+.svc-card p{color:var(--muted);font-size:16px;line-height:1.55;flex:1}
+.more{display:block;margin-top:16px;color:var(--mint-d);font-weight:700;font-size:15.5px}
+
+/* Этапы */
+.steps{display:grid;gap:14px;max-width:780px}
+.step{display:grid;grid-template-columns:50px 1fr;gap:18px;padding:22px;border:1px solid var(--line);border-radius:20px;background:#fff}
+.n{width:50px;height:50px;border-radius:50%;background:var(--mint-d);color:#fff;font-weight:800;display:grid;place-items:center;font-size:20px}
+.step h3{font-size:19px;margin-bottom:4px}
+.step p{color:var(--muted);font-size:16.5px}
+.note{max-width:780px;margin-top:18px;background:var(--mint-l);border-left:5px solid var(--mint-d);border-radius:16px;padding:20px 22px;font-size:16.5px}
+.note b{display:block;margin-bottom:4px}
+
+/* Обо мне */
+.about{display:grid;grid-template-columns:1fr;max-width:760px}
+.about p{font-size:18px;margin-bottom:18px;color:var(--ink)}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{background:var(--mint-l);color:var(--mint-d);font-weight:700;font-size:15px;padding:8px 16px;border-radius:99px}
+
+/* FAQ */
+.faq{max-width:780px}
+details{border:1px solid var(--line);border-radius:18px;margin-bottom:12px;background:#fff;transition:border-color .2s}
+details[open]{border-color:var(--mint)}
+summary{cursor:pointer;padding:20px 22px;font-weight:700;font-size:17.5px;list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:26px;color:var(--mint-d);line-height:1;transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 22px 20px;color:var(--muted);font-size:16.5px}
+
+
+/* Контакты */
+.final{background:var(--mint-d);color:#fff;border-radius:32px;padding:48px 36px;text-align:center}
+.final h2{color:#fff}
+.final p{font-size:18px;opacity:.95;max-width:560px;margin:0 auto 28px}
+.final .cta-row{justify-content:center}
+footer{padding:26px 0 34px;text-align:center;color:var(--muted);font-size:14.5px}
+
+/* Окно */
+.modal{position:fixed;inset:0;z-index:100;background:rgba(23,48,44,.55);display:flex;align-items:center;justify-content:center;padding:20px;animation:fi .2s}
+.modal-box{position:relative;background:#fff;border-radius:26px;width:100%;max-width:760px;max-height:92vh;overflow-y:auto;padding:34px 30px 30px;animation:up .3s}
+.modal-box h2{font-size:26px;margin-bottom:10px;padding-right:44px}
+.x{position:absolute;top:16px;right:16px;width:42px;height:42px;border-radius:50%;border:0;background:var(--mint-l);color:var(--mint-d);font-size:24px;cursor:pointer;line-height:1}
+.x:hover{background:var(--mint-m)}
+@keyframes fi{from{opacity:0}}@keyframes up{from{opacity:0;transform:translateY(24px)}}
+.m-lead{color:var(--muted);margin-bottom:18px;font-size:16.5px}
+.m-cta{margin-top:24px;padding-top:20px;border-top:1px solid var(--line);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.m-cta span{color:var(--muted);font-size:15.5px;flex:1;min-width:200px}
+.mtabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.mtab{border:1.5px solid var(--line);background:#fff;padding:9px 16px;border-radius:99px;font:600 15.5px 'Inter',sans-serif;cursor:pointer;color:var(--muted)}
+.mtab[aria-selected=true]{background:var(--mint-d);border-color:var(--mint-d);color:#fff}
+
+/* Окно «Написать мне» */
+.cbox{display:grid;gap:12px}
+.cbtn{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:16px 18px;font:700 17px 'Inter',sans-serif;color:var(--ink);cursor:pointer;transition:.2s}
+.cbtn:hover{border-color:var(--mint);background:var(--mint-l)}
+.cbtn small{display:block;font-weight:500;color:var(--muted);font-size:14.5px;margin-top:2px}
+.ci{flex:none;width:46px;height:46px;border-radius:14px;background:var(--mint-l);display:grid;place-items:center;font-size:22px}
+.mailbox{background:var(--mint-l);border-radius:18px;padding:18px;display:grid;gap:12px;animation:fi .25s}
+.mailaddr{font-weight:800;font-size:19px;word-break:break-all}
+
+.post{border:1px solid var(--line);border-radius:18px;padding:22px}
+.post-h{display:flex;gap:10px;align-items:center;margin-bottom:14px;font-weight:700}
+.post-h i{width:38px;height:38px;border-radius:50%;background:var(--mint-m);display:grid;place-items:center;font-style:normal}
+.post-h small{display:block;font-weight:500;color:var(--muted);font-size:13.5px;line-height:1.2}
+.post-body{white-space:pre-line;font-size:16.5px;line-height:1.65}
+.post-img{border-radius:14px;overflow:hidden;background:#f5efe6}
+.post-img img{display:block;width:100%;height:auto}
+.post-img .fb{display:none;padding:26px 22px;white-space:pre-line;font-size:16.5px;line-height:1.6}
+.post-img .fb b{display:block;font-size:26px;line-height:1.15;margin:6px 0 10px;color:#3f4f3a;letter-spacing:-.01em}
+.post-img.noimg .fb{display:block}
+.why{margin-top:16px;background:var(--mint-l);border-radius:12px;padding:12px 14px;font-size:15px;color:var(--muted)}
+.why b{color:var(--mint-d)}
+
+.phone{position:relative;width:min(290px,100%);aspect-ratio:9/16;margin:0 auto;border-radius:32px;overflow:hidden;border:7px solid var(--ink);background:#fff}
+.bars{position:absolute;top:10px;left:12px;right:12px;display:flex;gap:4px;z-index:5}
+.bar{flex:1;height:3px;background:rgba(23,48,44,.2);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--ink);transition:width .3s}
+.slide{position:absolute;inset:0;padding:46px 22px 26px;display:flex;flex-direction:column;justify-content:center;pointer-events:none}
+.slide .txt{display:flex;flex-direction:column;gap:14px}
+.slide .big{font-size:23px;font-weight:800;line-height:1.2;letter-spacing:-.02em}
+.slide .small{font-size:15.5px;opacity:.85;line-height:1.5}
+.slide.has-img{padding:0}
+.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.slide.has-img .txt{display:none}
+.s-cream{background:#f5efe6;color:#3a2f28}
+.poll{display:grid;gap:8px;pointer-events:auto}
+.poll button{border:2px solid var(--ink);background:#fff;border-radius:14px;padding:13px;font:700 16px 'Inter',sans-serif;cursor:pointer;color:var(--ink)}
+.poll button.on{background:var(--mint-d);border-color:var(--mint-d);color:#fff}
+.cta-s{background:#c0714f;color:#fff;text-align:center;font-weight:700;padding:14px;border-radius:99px;font-size:15.5px}
+.tap{position:absolute;top:0;bottom:0;z-index:4;cursor:pointer}
+.tap-l{left:0;width:30%}.tap-r{right:0;width:70%}
+.ctrl{display:flex;gap:10px;justify-content:center;margin-top:14px;align-items:center;color:var(--muted);font-size:14.5px}
+.ctrl button{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line);background:#fff;font-size:20px;cursor:pointer;color:var(--mint-d)}
+.ctrl button:hover{background:var(--mint-l)}
+
+.scene{display:grid;grid-template-columns:84px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.scene:first-child{padding-top:0}
+.scene .t{font-weight:800;color:var(--mint-d);font-size:15.5px}
+.scene h4{font-size:17px;margin-bottom:4px}
+.scene p{font-size:15.5px;color:var(--muted);line-height:1.55;margin-bottom:3px}
+.scene p b{color:var(--ink)}
+
+.chat{max-width:380px;margin:0 auto;border-radius:24px;overflow:hidden;border:1px solid var(--line);box-shadow:0 14px 40px rgba(23,48,44,.13);background:#eaf3f0}
+.chat-h{background:var(--mint-d);color:#fff;padding:14px 16px;display:flex;gap:12px;align-items:center;font-weight:700;line-height:1.25}
+.chat-h small{display:block;font-weight:500;opacity:.85;font-size:13px}
+.av{width:42px;height:42px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:21px}
+.chat-log{height:410px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px;scroll-behavior:smooth}
+.msg{max-width:88%;padding:10px 14px;border-radius:16px;font-size:15.5px;line-height:1.5;animation:fi .25s}
+.msg.bot{background:#fff;align-self:flex-start;border-bottom-left-radius:4px}
+.msg.me{background:var(--mint-m);align-self:flex-end;border-bottom-right-radius:4px}
+.typing span{display:inline-block;width:7px;height:7px;margin:0 2px;border-radius:50%;background:#9db5af;animation:bl 1s infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+@keyframes bl{0%,100%{opacity:.3}50%{opacity:1}}
+.kb{display:grid;gap:6px;align-self:stretch;animation:fi .25s}
+.kb button,.fake{border:0;background:rgba(10,127,106,.14);color:var(--mint-d);font:600 15.5px 'Inter',sans-serif;padding:12px;border-radius:12px;cursor:pointer;text-align:center}
+.kb button:hover{background:rgba(10,127,106,.24)}
+.nl{background:#eaf3f0;border-radius:22px;padding:18px;max-width:480px;margin:0 auto}
+.nl .msg{max-width:100%;white-space:pre-line;font-size:16px}
+.nl .fake{display:block;margin-top:10px;cursor:default}
+.vid{display:grid;place-items:center;text-align:center;aspect-ratio:16/9;border-radius:20px;background:linear-gradient(135deg,var(--mint-l),var(--mint-m));padding:24px}
+.vid .play{width:68px;height:68px;border-radius:50%;background:var(--mint-d);color:#fff;display:grid;place-items:center;font-size:26px;margin:0 auto 12px}
+.frame{width:100%;aspect-ratio:16/9;border:0;border-radius:20px}
+.list2{display:grid;gap:10px;margin-top:16px}
+.list2 div{background:var(--mint-l);border-radius:14px;padding:12px 16px;font-size:16px}
+
+.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
+.js .reveal.in{opacity:1;transform:none}
+
+/* Планшет */
+@media(max-width:1000px){
+  .grid4{grid-template-columns:1fr 1fr}
+  .hero .container{gap:32px}
+}
+@media(max-width:900px){
+  .hero .container,.calc{grid-template-columns:1fr}
+  .svc{grid-template-columns:1fr 1fr}
+  .ph-img{height:auto;width:min(320px,80vw)}
+  .ph{margin-top:8px}
+}
+/* Меню на телефоне и планшете */
+@media(max-width:820px){
+  .burger{display:grid;place-items:center}
+  .nav{display:none;position:absolute;top:66px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 20px 40px rgba(23,48,44,.12);flex-direction:column;align-items:stretch;gap:0;padding:8px 20px 22px;max-height:calc(100vh - 66px);overflow-y:auto}
+  .nav.open{display:flex}
+  .nav a.l{display:block;padding:15px 4px;border-bottom:1px solid var(--line);font-size:17px;color:var(--ink)}
+  .dd{border-bottom:1px solid var(--line);padding-bottom:8px}
+  .dd-b{display:none}
+  .dd-t{display:block;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--mint-d);font-weight:800;padding:16px 4px 6px}
+  .dd-m{display:block;position:static;min-width:0;border:0;box-shadow:none;padding:0;border-radius:0}
+  .dd-m button{padding:11px 4px;font-size:17px}
+  .nav .btn{margin-top:18px;padding:15px}
+}
+@media(max-width:640px){
+  section{padding:38px 0}
+  .sub{margin-bottom:22px}
+  .grid4,.svc{grid-template-columns:1fr}
+  .calc{padding:26px 20px}.final{padding:38px 20px;border-radius:26px}
+  .cta-row .btn{width:100%}
+  .modal{padding:0;align-items:flex-end}
+  .modal-box{border-radius:24px 24px 0 0;padding:28px 18px 24px;max-height:94vh}
+  .scene{grid-template-columns:1fr;gap:4px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+
+<header class="hdr">
+  <div class="container">
+    <a href="#top" class="logo" data-name></a>
+    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="nav">☰</button>
+    <nav class="nav" id="nav">
+      <div class="dd" id="dd">
+        <button class="dd-b" id="ddb" aria-expanded="false" aria-haspopup="true">Услуги</button>
+        <div class="dd-t">Услуги и примеры</div>
+        <div class="dd-m" id="ddm"></div>
+      </div>
+      <a class="l" href="#process">Как работаем</a>
+      <a class="l" href="#about">Обо мне</a>
+      <a class="l" href="#faq">Вопросы</a>
+      <button type="button" class="btn btn-p btn-s" data-contact>Написать</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- ГЛАВНЫЙ ЭКРАН -->
+  <section class="hero">
+    <div class="container">
+      <div>
+        <span class="eyebrow">Контент для экспертов и малого бизнеса</span>
+        <h1>Ваше время — <em>для дела.</em> Контент для соцсетей беру на себя</h1>
+        <p class="lead">Сценарии для сторис и рилс, посты и рассылки — не «чтобы было», а под вашу услугу или продукт и план продаж.</p>
+        <ul class="ticks">
+          <li>Опираюсь на анализ вашего продукта или услуги, вашей ниши и того, что на самом деле волнует покупателей</li>
+          <li>У каждого материала своя роль: продать, вовлечь или познакомить с вами</li>
+          <li>Ваш опыт и личную историю показываем только в тех рамках, которые выбираете вы</li>
+        </ul>
+<br>
+        <div class="cta-row">
+          <a class="btn btn-p" href="#services">Смотреть примеры</a>
+          <button type="button" class="btn btn-o" data-contact>Написать мне</button>
+        </div>
+        <p class="hint">Начинаем с короткого созвона, чтобы познакомиться и обсудить задачу.</p>
+      </div>
+      <div class="ph">
+        <div class="ph-img" id="phImg"><img id="photo" alt="" width="640" height="480"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ВЫГОДЫ -->
+  <section class="tint" id="benefits">
+    <div class="container">
+      <h2 class="reveal">Что вы получаете от работы со мной</h2>
+      <p class="sub reveal">Без громких обещаний: только то, что реально меняется в вашем рабочем дне.</p>
+      <div class="grid4">
+        <div class="card reveal"><div class="ic">⏳</div><h3>Больше времени на основное дело</h3><p>Не нужно каждый день думать, о чём писать и что снимать. Сценарии и тексты готовлю я.</p></div>
+        <div class="card reveal"><div class="ic">💬</div><h3>Контент про вас, а не шаблон</h3><p>Учитываю вашу манеру говорить и ваш опыт, чтобы читатели узнавали вас, а не «ещё одного эксперта».</p></div>
+        <div class="card reveal"><div class="ic">🎯</div><h3>У каждой публикации своя задача</h3><p>Продать, вовлечь или познакомить с вами. Вы заранее знаете, что выйдет на этой неделе и зачем.</p></div>
+        <div class="card reveal"><div class="ic">🔎</div><h3>Основа — анализ, а не догадки</h3><p>Изучаю то, что вы предлагаете, вашу нишу, конкурентов и живые вопросы покупателей. Поэтому пишу о том, что людям действительно важно.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ВРЕМЯ + КАЛЬКУЛЯТОР (объединено в один блок) -->
+  <section class="tint" id="time">
+    <div class="container">
+      <h2 class="reveal">Говорят, время не купишь</h2>
+      <p class="sub reveal">Да, мы не можем прийти в магазин и купить батон и пару годков. Зато мы можем делегировать профессионалу часть работы и сэкономить это время для себя. Передвиньте ползунок и посмотрите, сколько это в часах и днях.</p>
+      <div class="calc reveal">
+        <div>
+          <h2>Сколько времени у вас уходит на контент?</h2>
+          <p class="sub" style="margin-bottom:14px;font-size:17px">Идеи, тексты, съёмка, монтаж, публикации. Прикиньте, сколько часов в неделю.</p>
+          <div class="big"><span id="hVal">6</span> <b id="hWord"></b> в неделю</div>
+          <input type="range" id="hours" min="1" max="30" value="6" aria-label="Часов в неделю на контент">
+        </div>
+        <div class="res">
+          <div class="row">В месяц <b id="perMonth"></b></div>
+          <div class="row">В год <b id="perYear"></b></div>
+          <div class="row">Это рабочих дней <b id="days"></b></div>
+          <p>Столько времени вы вкладываете в контент сейчас. Часть этой работы можно передать мне.</p>
+          <button type="button" class="btn btn-p btn-s" data-contact style="margin-top:14px">Обсудить, что передать</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- УСЛУГИ -->
+  <section id="services">
+    <div class="container">
+      <h2 class="reveal">Услуги и примеры работ</h2>
+      <p class="sub reveal">Нажмите на карточку, чтобы увидеть, как выглядит результат.</p>
+      <div class="group">Основные</div>
+      <div class="svc" id="mainSvc"></div>
+      <div class="group">Дополнительно</div>
+      <div class="svc" id="extraSvc"></div>
+    </div>
+  </section>
+
+  <!-- КАК РАБОТАЕМ -->
+  <section id="process">
+    <div class="container">
+      <h2 class="reveal">Как мы работаем</h2>
+      <p class="sub reveal">Семь понятных шагов. Вы всегда знаете, что происходит сейчас и что будет дальше.</p>
+      <div class="steps">
+        <div class="step reveal"><div class="n">1</div><div><h3>Созвон-знакомство</h3><p>Договариваемся о созвоне (либо обсуждаем все в переписке, как удобнее). Вы рассказываете о проекте и задачах, я задаю уточняющие вопросы. Так мы понимаем, подходим ли друг другу.</p></div></div>
+        <div class="step reveal"><div class="n">2</div><div><h3>Бриф</h3><p>Анкета примерно из 15 вопросов о вашем деле, продукте и покупателях. Отвечать можно письменно или наговорить голосом, как удобнее.</p></div></div>
+        <div class="step reveal"><div class="n">3</div><div><h3>Договорённости</h3><p>По брифу прописываем и согласуем задачи, обсуждаем сроки и формат работы, отчетность и оплату, затем оформляем официальную договорённость.</p></div></div>
+        <div class="step reveal"><div class="n">4</div><div><h3>Предоплата</h3><p>Предоплата 100%. За первый месяц делается огромный пласт работы по анализу, сбору данных, разработки контент-плана, первого контента. Я должна понимать, что эта работа не делается впустую. Этот же принцип распространяется и на следующие месяцы.</p></div></div>
+        <div class="step reveal"><div class="n">5</div><div><h3>Изучаю аудиторию и рынок</h3><p>Собираю свежие данные: смотрю на цифры и на живые комментарии, отзывы и вопросы людей. Это занимает время, но необходимо для качественной работы над проектом.</p></div></div>
+        <div class="step reveal"><div class="n">6</div><div><h3>План публикаций и работа</h3><p>Составляю план и после согласования пишу материалы. Вы смотрите, вносите замечания, и мы доводим всё до публикации.</p></div></div>
+        <div class="step reveal"><div class="n">7</div><div><h3>Отчет</h3><p>Отчет за оплаченный период: что сделано, какой результат по статистике, комментариям. При необходимости вносим корректировку в план на новый период согласно вашим актуальным задачам.</p></div></div>
+      </div>
+      <div class="note reveal"><b>Почему я не пишу сразу после брифа</b>Контент, построенный на свежих данных, попадает в реальные вопросы и сомнения ваших покупателей. Поэтому сначала разбираюсь, потом пишу.
+<br><b>Предоставление материала и ваша обратная связь</b> Все это — важные составляющие успешного контента. После определенной «притирки» правок будет меньше.</div>
+    </div>
+  </section>
+
+  <!-- ОБО МНЕ -->
+  <section class="tint" id="about">
+    <div class="container about">
+      <h2 class="reveal">Немного обо мне</h2>
+      <div class="reveal" id="aboutText"></div>
+      </div>
+  </section>
+
+  <!-- ВОПРОСЫ -->
+  <section id="faq">
+    <div class="container">
+      <h2 class="reveal">Частые вопросы</h2>
+      <div class="faq reveal" style="margin-top:22px">
+        <details><summary>У меня мало времени. Это проблема?</summary><p>Нет. От вас нужны созвон, бриф и согласование материалов. Остальное делаю я.</p></details>
+        <details><summary>Как вы поймёте, что писать про мой бизнес?</summary><p>Через бриф и изучение аудитории: ваш рассказ, ваши покупатели, ваши конкуренты. Я не пишу общими словами, которые подошли бы кому угодно.</p></details>
+        <details><summary>Вы используете нейросети? Тексты не будут «роботными»?</summary><p>Использую для скорости: черновики, идеи, разбор больших объёмов данных. Смысл, структуру и итоговый текст довожу сама, чтобы читалось по-человечески.</p></details>
+        <details><summary>Сколько это стоит?</summary><p>Зависит от задач и объёма. Конкретную сумму называю после брифа, когда понятно, что именно нужно сделать.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- КОНТАКТЫ -->
+  <section id="contacts" style="padding-top:12px">
+    <div class="container">
+      <div class="final reveal">
+        <h2>Давайте обсудим вашу задачу</h2>
+        <p>Напишите пару слов о проекте. Я отвечу и предложу время для короткого созвона.</p>
+        <div class="cta-row">
+          <button type="button" class="btn btn-w" data-contact="vk">Написать ВКонтакте</button>
+          <button type="button" class="btn btn-ow" data-contact="mail">Написать на почту</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="container">© <span id="year"></span> <span data-name></span></div></footer>
+
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="modal-box">
+    <button class="x" id="mClose" aria-label="Закрыть">×</button>
+    <h2 id="mTitle"></h2>
+    <div id="mBody"></div>
+  </div>
+</div>
+
+<script>
+/* =====================================================
+   ✏️ НАСТРОЙКИ. МЕНЯЙТЕ ТОЛЬКО ЭТОТ БЛОК
+   ===================================================== */
+const CONFIG = {
+  name: "Анна Волкова",
+  photo: "photo.jpg",                   // файл с фото лежит рядом с этой страницей
+
+  /* КОНТАКТЫ. Хранятся по частям и собираются только после нажатия кнопки,
+     поэтому роботы-сборщики не находят их в тексте страницы. */
+  email: ["hello", "example.com"],      // слева от @ и справа от @
+  vk: "username",                       // то, что идёт после vk.com/ (например "id12345" или "anna_volkova")
+
+  /* ТЕКСТ «ОБО МНЕ».
+     Правило: один абзац = одна строка в кавычках, после каждой строки (кроме последней) запятая.
+     Внутри абзаца нельзя делать перенос строки и ставить прямые кавычки " — используйте «ёлочки». */
+    about: [
+    "7 лет вела женский проект и модерировала очень активный форум, потом 5 лет учила людей в собственной онлайн-школе. Поэтому умею объяснять простыми словами и разговаривать с живой аудиторией.",
+    " Проходила обучение по копирайтингу, созданию контента, сайтов, нейросетям, автоматизации. Сейчас прохожу обучение по маркетингу и коучингу, чтобы повышать качество услуг. Последнее помогает мне задавать правильные вопросы и понимать, что вам действительно нужно.",
+    "Чего я не обещаю: «+2000 подписчиков за месяц» и взрывного роста продаж. Контент — часть системы, а не волшебная кнопка. Зато могу обещать: внимательный разбор вашего продукта, понятные сроки, интересный контент, мониторинг и анализ эффективности."
+  ],
+
+  videoPostUrl: "https://vk.ru/wall-222711969_469",   // ссылка на пример нейровидео
+  vkVideo: null,                        // для вставки плеера: { oid: -222711969, id: 456239017 }
+  landingUrl: ""                        // ссылка на реальный лендинг (необязательно)
+};
+
+/* ПРИМЕРЫ ПОСТОВ (МАК-консультант).
+   Тексты в обратных кавычках `...` — внутри можно делать переносы строк.
+   img — картинка вместо текста (файл лежит рядом со страницей). */
+const POSTS = [
+  { kind:"Продающий пост", who:"МАК-консультант",
+    text:`Третий месяц думаете об одном и том же?
+
+Прокрутили со всех сторон. Взвесили. Спросили подругу — она сказала «делай как чувствуешь». Спасибо, очень помогло.
+
+А ответа всё нет. Так и будет. Думать по кругу — это как искать ключи в той же сумке в десятый раз. Мысли разбежались, важное вперемешку с ерундой, и в этой каше решение просто не видно.
+
+Хотя оно уже внутри. Просто вы его не слышите.
+
+Для этого у меня есть карты.
+
+МАК — не гадание и не мистика. Язык образов проскакивает мимо внутреннего цензора, пока тот не успел придумать очередное умное объяснение. Вы тянете картинку — и видите свою ситуацию со стороны. То, что в голове не складывалось месяцами.
+
+Почему работает:
+✔ Решение ваше, не моё. Я только задаю вопросы.
+✔ Никакого копания в детстве и выворачивания души.
+✔ Одна встреча — 90 минут. Не «ходите ко мне год».
+
+Клиентки пишут примерно одно и то же: «Решение оказалось на поверхности. И оно меня полностью устроило». «В голове всё разложилось по полочкам». «Пришла не особо ожидая результата, что могут картинки. А они показали весь процесс со стороны, сразу стали видны слабые места и как все поправить».
+
+Предварительная беседа: время по договоренности, 20 минут, бесплатно.
+Основная сессия: время по договоренности, 90 минут, [сумма] ₽. Опыта и спецподготовки не требуется.
+
+Осталось 1 место на четверг на этой неделе. Напишите мне в личку слово «ясность» — расскажу детали и честно скажу, ваш это формат или нет.
+
+А пока признавайтесь в комментариях: сколько вы уже носите свой вопрос? Месяц? Три года? Проверим, у кого стаж больше 😄`,
+    why:"Начинается с ситуации, в которой читатель узнаёт себя. Дальше снимает страх «это что-то мистическое», даёт отзывы, понятный формат и цену. Закрывает ограниченным количеством мест и кодовым словом, а вопрос в конце собирает комментарии." },
+  { kind:"Вовлекающий пост", who:"МАК-консультант",
+    text:`«Сильный человек справляется сам».
+
+Самое дорогое убеждение, на мой взгляд. И счёт по нему приходит не сразу, а частями: сначала временем, потом возможностями, а потом уже и деньгами — тихонько, мимо кошелька. Недозаработанное же не болит. Оно просто не приходит.
+
+Многие из тех, с кем я работала, сначала пытались справиться сами: думали, взвешивали, читали умные книжки, ходили на вебинары, а ответ, решение так и не находились. И только потом, когда сил уже почти не осталось, решались обратиться к специалисту.
+
+И это даже не ваша вина. Это работа устоявшихся стереотипов.
+
+Почему не просто коуч-сессия, а с применением МАК? Да, на коуч-сессии можно добиться нужного ответа, но вам придется очень постараться, чтобы преодолеть свои устоявшиеся взгляды, привычные мысли, которые с радостью снова побегут по кругу. Так и выявляется паттерн поведения. Это долгая серьезная работа.
+
+МАК снимает защиту, обходит уловки разума и получает ответ и от вашей бессознательной части. С помощью МАК можно поговорить с любой частью вашей личности.
+
+Есть в этом какая-то загадка, как из сотен карточек всплывают номера именно тех, которые нужны и создают именно ту историю, которую вам важно сейчас услышать.
+
+Хотите испытать эту технику на себе? Приходите на бесплатную онлайн-встречу для групповой практики (дата, время).
+Регистрация (ссылка)`,
+    why:"Спорит с привычным убеждением, в котором многие узнают себя, и объясняет, чем МАК отличается от обычной коуч-сессии. В конце приглашает на бесплатную встречу: так людям, которые пока только присматриваются, проще сделать первый шаг." },
+  { kind:"Рекламный баннер", who:"МАК-консультант",
+    img:"banner.jpg",
+    fallback:`Групповая онлайн-встреча · разбор
+<b>Синдром самозванца</b>Метафорические карты, честный разговор и поддержка
+11 октября 2026
+Регистрация по ссылке →`,
+    why:"На баннере только главное: тема, формат, дата и одна кнопка. Фото ведущей с картами сразу показывает, о чём встреча, и вызывает доверие." }
+];
+
+/* РАССЫЛКА (разовое письмо) */
+const MAIL = {
+  text:`Кто внутри вас каждый раз включает тормоза?
+
+Заметила одну странную вещь. Чем больше человек умеет, тем изобретательнее его мозг придумывает объяснение, почему это всё случайность.
+
+Клиенты пришли — повезло.
+Получилось — обстоятельства совпали.
+Похвалили — ну, люди просто хорошие.
+
+А потом человек собирается поднять цену или выйти с новым продуктом — и внутренний контролёр вцепляется мёртвой хваткой:
+«Куда пошёл? Мы ещё недостаточно хорошие».
+
+И вот тут начинается самое интересное.
+
+Синдром самозванца — не враг, а защитник. Мозг решил, что впереди опасность, и включает знакомую схему: лучше сомневаться в себе, чем высовываться туда, где непонятно, что будет.
+
+Логика железная. Польза сомнительная. :)
+
+На встрече «Синдром самозванца» будем разбираться с этим с помощью МАК.
+Посмотрим, от чего именно ваша психика вас бережёт и что с этим можно сделать.
+
+Хотите проверить, кто там на самом деле рулит? 👉`,
+  button:"Оставить заявку на онлайн-встречу",
+  why:"Письмо начинается с вопроса-крючка и узнаваемых примеров. Синдром самозванца показан не врагом, а защитником, поэтому о нём не страшно читать. В конце одно приглашение и одна кнопка."
+};
+
+/* СТОРИС. img — файл слайда рядом со страницей.
+   Если файла нет, слайд покажется текстом ниже. */
+const STORY = [
+  { img:"story1.jpg", big:"«Недавно состоялся разговор, который задел за живое»", small:"Правила в жизни: на что ты имеешь право по отношению к себе?" },
+  { img:"story2.jpg", big:"«Есть законы.\nИ есть правила.»", small:"Законы соблюдаем. Правила люди придумали для удобства — причем не факт, что твоего. Тут уже свобода выбора и ответственности." },
+  { img:"story3.jpg", big:"«Делать так, как хотела»", small:"Единственное, что примиряет с последствиями решений — это делать так, как хотела. Получилось — классно. Не получилось — думаем и делаем по-другому." },
+  { img:"story4.jpg", big:"«Бывает и так»", small:"В какой-то момент я заметила, как сама обложила себя надуманными правилами — что не шевельнуться." },
+  { img:"story5.jpg", big:"«Я разрешаю себе»", small:"Недавно я купила новую колоду.\n\n«Я даю себе право искренне и открыто проявлять себя. Я настоящая!»" },
+  { img:"story6.jpg", big:"Хотите найти свои заградительные правила и разрешить себе лучшую жизнь?", small:"Онлайн-встреча · групповой разбор\nдата · время", cta:"Записаться" }
+];
+
+/* РИЛС (сценарий по мотивам сторис) */
+const REEL = [
+  { t:"0–3 с", h:"Зацепка", v:"Крупно: рука кладёт на стол карту рубашкой вверх.", s:"«Сколько правил вы соблюдаете, которые никто никогда не писал?»", x:"Чьи это правила?" },
+  { t:"3–10 с", h:"История", v:"Чашка чая, рядом раскладываются карты.", s:"«Я заметила, что сама обложила себя правилами так, что не шевельнуться».", x:"Сама себе запретила" },
+  { t:"10–17 с", h:"Поворот", v:"Карту переворачивают, крупно образ на ней.", s:"«Законы мы соблюдаем. А правила люди придумали для удобства. Причём не факт, что вашего».", x:"Правило ≠ закон" },
+  { t:"17–22 с", h:"Призыв", v:"Ведущая с колодой в руках смотрит в камеру.", s:"«Найдём ваши правила на онлайн-встрече. Ссылка в описании».", x:"Онлайн-встреча · групповой разбор" }
+];
+/* ===================================================== */
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const plural = (n,f) => { n=Math.abs(n)%100; const k=n%10; return n>10&&n<20?f[2]:k>1&&k<5?f[1]:k===1?f[0]:f[2]; };
+
+document.querySelectorAll('[data-name]').forEach(e=>e.textContent=CONFIG.name);
+$('#aboutText').innerHTML = CONFIG.about.map(t => '<p>' + esc(t) + '</p>').join('');
+$('#year').textContent = new Date().getFullYear();
+document.title = CONFIG.name + ' — контент для соцсетей';
+
+/* Фото. Если файл не найден, показываем инициалы */
+(function(){
+  const img=$('#photo'), box=$('#phImg');
+  box.dataset.i = CONFIG.name.split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
+  img.onerror = () => { img.remove(); box.classList.add('noimg'); };
+  img.alt = CONFIG.name;
+  img.src = CONFIG.photo;
+})();
+
+/* Калькулятор */
+const rg = $('#hours');
+function calc(){
+  const h=+rg.value, m=h*4, y=h*52, d=Math.round(y/8);
+  $('#hVal').textContent=h; $('#hWord').textContent=plural(h,['час','часа','часов']);
+  $('#perMonth').textContent=m+' '+plural(m,['час','часа','часов']);
+  $('#perYear').textContent=y+' '+plural(y,['час','часа','часов']);
+  $('#days').textContent=d+' '+plural(d,['день','дня','дней']);
+}
+rg.addEventListener('input',calc); calc();
+
+/* ---------- Окна с примерами ---------- */
+const cta = `<div class="m-cta"><span>Хотите так же для своего проекта?</span><button type="button" class="btn btn-p btn-s" data-contact>Обсудить задачу</button></div>`;
+const tabsHtml = names => `<div class="mtabs">${names.map((n,i)=>`<button class="mtab" aria-selected="${i===0}">${esc(n)}</button>`).join('')}</div>`;
+const nl2br = s => esc(s).replace(/\n/g,'<br>');
+function initTabs(root){
+  const bs=[...root.querySelectorAll('.mtab')], ps=[...root.querySelectorAll('.mpanel')];
+  bs.forEach((b,i)=>b.addEventListener('click',()=>{bs.forEach((x,j)=>x.setAttribute('aria-selected',i===j));ps.forEach((p,j)=>p.hidden=i!==j)}));
+}
+function initStories(root){
+  const v=root.querySelector('.phone'), slides=[...v.querySelectorAll('.slide')], bars=[...v.querySelectorAll('.bar i')]; let i=0;
+  const show=n=>{i=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,k)=>s.hidden=k!==i);bars.forEach((b,k)=>b.style.width=k<=i?'100%':'0')};
+  v.querySelector('.tap-l').onclick=()=>show(i-1); v.querySelector('.tap-r').onclick=()=>show(i+1);
+  root.querySelector('[data-prev]').onclick=()=>show(i-1); root.querySelector('[data-next]').onclick=()=>show(i+1);
+  v.querySelectorAll('.poll button').forEach(b=>b.onclick=()=>{v.querySelectorAll('.poll button').forEach(x=>x.classList.remove('on'));b.classList.add('on')});
+  show(0);
+}
+
+/* Бот МАК-консультанта */
+const BOT = {
+  start:()=>({text:"Здравствуйте! Я бот консультанта по метафорическим картам 🌿\nЧем могу помочь?",btns:[{t:"🃏 Что такое МАК",to:"about"},{t:"🧭 Подобрать формат",to:"q1"},{t:"💬 Написать консультанту",to:"contact"}]}),
+  about:()=>({text:"МАК — не гадание и не мистика. Это язык образов: вы тянете карту и видите свою ситуацию со стороны.\nРешение остаётся вашим, консультант только задаёт вопросы.",btns:[{t:"🧭 Подобрать формат",to:"q1"},{t:"⬅️ В начало",to:"start"}]}),
+  q1:()=>({text:"Вопрос 1 из 2. С чем хотите поработать?",btns:[{t:"🔄 Не могу принять решение",to:"q2",set:{topic:"decision"}},{t:"🫣 Сомневаюсь в себе",to:"q2",set:{topic:"impostor"}},{t:"🧱 Сама себя ограничиваю",to:"q2",set:{topic:"rules"}}]}),
+  q2:()=>({text:"Вопрос 2 из 2. Как вам комфортнее?",btns:[{t:"👤 Один на один",to:"result",set:{fmt:"solo"}},{t:"👥 В группе",to:"result",set:{fmt:"group"}}]}),
+  result:a=>{
+    const T={
+      decision:"Посмотрим на вопрос, который вы давно носите, со стороны.",
+      impostor:"Разберёмся, от чего именно ваша психика вас бережёт.",
+      rules:"Найдём правила, которые мешают, и решим, какие из них вам на самом деле нужны."
+    };
+    const G={
+      decision:"бесплатная онлайн-встреча с групповой практикой",
+      impostor:"онлайн-встреча «Синдром самозванца»",
+      rules:"групповой разбор «Заградительные правила»"
+    };
+    return {
+      text: a.fmt==="solo"
+        ? `Вам подойдёт индивидуальная сессия: 90 минут онлайн 🌱\n${T[a.topic]}\nСначала бесплатная беседа на 20 минут, чтобы понять, ваш ли это формат.`
+        : `Вам подойдёт ${G[a.topic]} 🌱\n${T[a.topic]}\nОпыта и подготовки не нужно.`,
+      btns:[{t:"📝 Записаться",to:"order"},{t:"🔁 Подобрать заново",to:"q1"}]
+    };
+  },
+  order:()=>({text:"Отлично! Передаю заявку консультанту, она напишет вам прямо в этом чате 🌿",btns:[{t:"⬅️ В начало",to:"start"}]}),
+  contact:()=>({text:"Передаю ваш вопрос консультанту. Ответ придёт сюда же, в чат 💬",btns:[{t:"⬅️ В начало",to:"start"}]})
+};
+function initBot(root){
+  const log=root.querySelector('.chat-log'); let ans={};
+  const add=(cls,html)=>{const d=document.createElement('div');d.className='msg '+cls;d.innerHTML=html;log.appendChild(d);log.scrollTop=log.scrollHeight;return d};
+  function go(id){
+    const node=BOT[id](ans), typing=add('bot typing','<span></span><span></span><span></span>');
+    setTimeout(()=>{
+      typing.remove(); add('bot',esc(node.text).replace(/\n/g,'<br>'));
+      const w=document.createElement('div'); w.className='kb';
+      node.btns.forEach(b=>{const x=document.createElement('button');x.textContent=b.t;
+        x.onclick=()=>{w.remove(); if(b.to==='q1'||b.to==='start')ans={}; if(b.set)Object.assign(ans,b.set); add('me',esc(b.t)); go(b.to)};
+        w.appendChild(x)});
+      log.appendChild(w); log.scrollTop=log.scrollHeight;
+    },650);
+  }
+  go('start');
+}
+
+const imgFail = "this.parentNode.classList.remove('has-img');this.parentNode.classList.add('noimg');this.remove()";
+
+const SERVICES = {
+  stories:{ ic:"🎬", title:"Сценарии для сторис и рилс", d:"Продумываю серию целиком: с чего начать, о чём рассказать, чем закончить. Вы получаете готовый текст для каждого слайда или кадра.",
+    render:()=>`<p class="m-lead">Серия сторис для МАК-консультанта. Нажимайте на экран телефона или на стрелки, чтобы листать.</p>
+      ${tabsHtml(["Сторис","Рилс"])}
+      <div class="mpanel">
+        <div class="phone">
+          <div class="bars">${STORY.map(()=>'<div class="bar"><i></i></div>').join('')}</div>
+          ${STORY.map(s=>`<div class="slide s-cream${s.img?' has-img':''}">${s.img?`<img src="${esc(s.img)}" alt="${esc(s.big)}" onerror="${imgFail}">`:''}<div class="txt"><div class="big">${nl2br(s.big)}</div>${s.small?`<div class="small">${nl2br(s.small)}</div>`:''}${s.poll?`<div class="poll">${s.poll.map(p=>`<button>${esc(p)}</button>`).join('')}</div>`:''}${s.cta?`<div class="cta-s">${esc(s.cta)}</div>`:''}</div></div>`).join('')}
+          <div class="tap tap-l"></div><div class="tap tap-r"></div>
+        </div>
+        <div class="ctrl"><button data-prev aria-label="Назад">‹</button><span>листайте</span><button data-next aria-label="Вперёд">›</button></div>
+      </div>
+      <div class="mpanel" hidden>${REEL.map(r=>`<div class="scene"><div class="t">${r.t}</div><div><h4>${r.h}</h4><p><b>В кадре:</b> ${esc(r.v)}</p><p><b>Слова:</b> ${esc(r.s)}</p><p><b>Текст на экране:</b> ${esc(r.x)}</p></div></div>`).join('')}</div>${cta}`,
+    mount:r=>{initTabs(r);initStories(r)} },
+  posts:{ ic:"✍️", title:"Посты для соцсетей", d:"Пишу посты разных типов: полезные, продающие, истории. Каждый строится вокруг одной понятной мысли.",
+    render:()=>`<p class="m-lead">Материалы для МАК-консультанта под разные задачи. Под каждым пояснено, как он устроен.</p>
+      ${tabsHtml(POSTS.map(p=>p.kind))}
+      ${POSTS.map((p,i)=>`<div class="mpanel" ${i?'hidden':''}><div class="post"><div class="post-h"><i>👤</i><div>${esc(p.who)}<small>${esc(p.kind)}</small></div></div>${p.img?`<div class="post-img"><img src="${esc(p.img)}" alt="${esc(p.kind)}" onerror="${imgFail}"><div class="fb">${esc(p.fallback||'').replace(/&lt;(\/?)b&gt;/g,'<$1b>')}</div></div>`:''}${p.text?`<div class="post-body">${esc(p.text)}</div>`:''}</div><div class="why"><b>Как это устроено:</b> ${esc(p.why)}</div></div>`).join('')}${cta}`,
+    mount:initTabs },
+  mailing:{ ic:"💌", title:"Рассылки", d:"Пишу письма и сообщения для вашей базы: анонсы, напоминания, предложения. Коротко, по делу и с понятной кнопкой.",
+    render:()=>`<p class="m-lead">Разовое письмо для рассылки МАК-консультанта. Так оно выглядит у подписчика в мессенджере.</p>
+      <div class="nl"><div class="msg bot">${esc(MAIL.text)}<span class="fake">${esc(MAIL.button)}</span></div></div>
+      <div class="why"><b>Как это устроено:</b> ${esc(MAIL.why)}</div>${cta}` },
+  bots:{ ic:"🤖", title:"Боты в Telegram и Senler", d:"Создаю и настраиваю чат-ботов: приветствие, выдача материалов, ответы на частые вопросы, сбор заявок.",
+    render:()=>`<p class="m-lead">Попробуйте сами: нажимайте на кнопки, как это делали бы ваши клиенты. Такой же сценарий работает и в Telegram, и в Senler (ВКонтакте).</p>
+      <div class="chat"><div class="chat-h"><div class="av">🃏</div><div>МАК-консультант<small>бот</small></div></div><div class="chat-log"></div></div>${cta}`,
+    mount:initBot },
+  video:{ ic:"🎥", title:"Нейровидео", d:"Короткие ролики, созданные с помощью нейросетей: для рекламы, соцсетей и презентации продукта.",
+    render:()=>`<p class="m-lead">Пример ролика, созданного с помощью нейросети.</p>
+      ${CONFIG.vkVideo?`<iframe class="frame" src="https://vk.com/video_ext.php?oid=${CONFIG.vkVideo.oid}&id=${CONFIG.vkVideo.id}&hd=2" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>`
+      :`<div class="vid"><div><div class="play">▶</div><a class="btn btn-p" href="${esc(CONFIG.videoPostUrl)}" target="_blank" rel="noopener">Смотреть пример в VK</a></div></div>`}
+      <div class="list2"><div>🎯 Для чего: реклама, сторис, презентация продукта, оживление образа</div><div>⏱ Формат: короткие ролики, подготовка сценария и подбор визуала входят в работу</div></div>${cta}` },
+  landing:{ ic:"🌐", title:"Лендинг", d:"Одностраничный сайт для вашего продукта или услуги: структура, тексты и сборка под задачу.",
+    render:()=>`<p class="m-lead">Эта страница, на которой вы сейчас находитесь, тоже лендинг. Обратите внимание на структуру: выгода в первом экране, примеры, понятные шаги и одна главная кнопка.</p>
+      <div class="list2"><div>1. Продумываем, что человек должен понять за первые секунды</div><div>2. Пишу тексты простыми словами, без перегруза</div><div>3. Собираю страницу, удобную и на телефоне, и на компьютере</div></div>
+      ${CONFIG.landingUrl?`<p style="margin-top:18px"><a class="btn btn-o" href="${esc(CONFIG.landingUrl)}" target="_blank" rel="noopener">Посмотреть живой пример</a></p>`:''}${cta}` }
+};
+const card = k => `<button class="svc-card reveal" data-svc="${k}"><div class="ic">${SERVICES[k].ic}</div><h3>${SERVICES[k].title}</h3><p>${SERVICES[k].d}</p><span class="more">Смотреть пример →</span></button>`;
+$('#mainSvc').innerHTML = ['stories','posts','mailing'].map(card).join('');
+$('#extraSvc').innerHTML = ['bots','video','landing'].map(card).join('');
+
+/* Услуги в меню */
+const MENU = { stories:"Сторис и рилс", posts:"Посты", mailing:"Рассылки", bots:"Боты в Telegram и Senler", video:"Нейровидео", landing:"Лендинг" };
+$('#ddm').innerHTML = Object.keys(MENU).map(k=>`<button data-svc="${k}"><span>${SERVICES[k].ic}</span>${MENU[k]}</button>`).join('');
+
+/* Меню: выпадающий список и бургер */
+const nav=$('#nav'), burger=$('#burger'), dd=$('#dd'), ddb=$('#ddb');
+function closeMenus(){
+  dd.classList.remove('open'); ddb.setAttribute('aria-expanded','false');
+  nav.classList.remove('open'); burger.textContent='☰'; burger.setAttribute('aria-expanded','false');
+}
+ddb.addEventListener('click',e=>{e.stopPropagation();const o=dd.classList.toggle('open');ddb.setAttribute('aria-expanded',o)});
+burger.addEventListener('click',e=>{e.stopPropagation();const o=nav.classList.toggle('open');burger.textContent=o?'✕':'☰';burger.setAttribute('aria-expanded',o)});
+document.addEventListener('click',e=>{
+  if(e.target.closest('.dd-m button, .nav a, .nav .btn')) closeMenus();
+  else if(!e.target.closest('.nav') && !e.target.closest('#burger')) closeMenus();
+});
+
+/* ---------- Окно ---------- */
+const modal=$('#modal'), mBody=$('#mBody'); let lastFocus;
+function showModal(title, html, mount){
+  $('#mTitle').textContent=title; mBody.innerHTML=html; mount&&mount(mBody);
+  if(modal.hidden){ modal.hidden=false; document.body.style.overflow='hidden'; lastFocus=document.activeElement; }
+  mBody.parentElement.scrollTop=0; $('#mClose').focus();
+}
+function openModal(k){ const s=SERVICES[k]; showModal(s.title, s.render(), s.mount); }
+function closeModal(){modal.hidden=true;document.body.style.overflow='';mBody.innerHTML='';lastFocus&&lastFocus.focus()}
+$('#mClose').onclick=closeModal;
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!modal.hidden)closeModal();else closeMenus()}});
+
+/* ---------- Контакты: собираются только по клику ---------- */
+const getMail = () => CONFIG.email.join('@');
+const getVk   = () => CONFIG.vk ? 'https://vk.com/' + CONFIG.vk : '';
+const mailBox = () => `<div class="mailbox"><div class="mailaddr" id="mailAddr">${esc(getMail())}</div>
+  <div class="cta-row"><button type="button" class="btn btn-p btn-s" data-do="mailto">Открыть почту</button><button type="button" class="btn btn-o btn-s" data-do="copy">Копировать адрес</button></div></div>`;
+
+function openContact(mode){
+  if(mode==='vk' && getVk()){ window.open(getVk(),'_blank','noopener'); return; }
+  showModal('Написать мне', `
+    <p class="m-lead">Выберите, как вам удобнее. Расскажите о проекте в паре слов, и я отвечу и предложу время для короткого созвона.</p>
+    <div class="cbox">
+      ${getVk()?`<button type="button" class="cbtn" data-do="vk"><span class="ci">💬</span><span>ВКонтакте<small>Личное сообщение</small></span></button>`:''}
+      <button type="button" class="cbtn" id="showMailBtn" data-do="showmail"><span class="ci">✉️</span><span>Электронная почта<small>Нажмите, чтобы показать адрес</small></span></button>
+      <div id="mailSlot"></div>
+    </div>`);
+  if(mode==='mail'){ $('#mailSlot').innerHTML=mailBox(); $('#showMailBtn').hidden=true; }
+}
+
+mBody.addEventListener('click',async e=>{
+  const b=e.target.closest('[data-do]'); if(!b) return;
+  const a=b.dataset.do;
+  if(a==='vk') window.open(getVk(),'_blank','noopener');
+  if(a==='showmail'){ $('#mailSlot').innerHTML=mailBox(); b.hidden=true; }
+  if(a==='mailto') location.href='mailto:'+getMail()+'?subject='+encodeURIComponent('Контент для моего проекта');
+  if(a==='copy'){
+    try{
+      if(!navigator.clipboard) throw 0;
+      await navigator.clipboard.writeText(getMail()); b.textContent='Скопировано ✓';
+    }catch{
+      const r=document.createRange(); r.selectNodeContents($('#mailAddr'));
+      const s=getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent='Выделено: Ctrl+C';
+    }
+  }
+});
+
+/* Общий обработчик кликов по кнопкам услуг и контактов */
+document.addEventListener('click',e=>{
+  const c=e.target.closest('[data-svc]'); if(c){ openModal(c.dataset.svc); return; }
+  const k=e.target.closest('[data-contact]'); if(k){ openContact(k.dataset.contact); }
+});
+
+/* Плавное появление блоков */
+const io = 'IntersectionObserver' in window ? new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12}) : null;
+document.querySelectorAll('.reveal').forEach(el=>io?io.observe(el):el.classList.add('in'));
+</script>
+</body>
+</html>
